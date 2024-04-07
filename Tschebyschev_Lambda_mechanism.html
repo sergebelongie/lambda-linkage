@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Tschebyschev_Lambda_mechanism.cdy</title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        #CSConsole {
+            background-color: #FAFAFA;
+            border-top: 1px solid #333333;
+            bottom: 0px;
+            height: 200px;
+            overflow-y: scroll;
+            position: fixed;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cindyjs.org/dist/v0.8/CindyJS.css">
+    <script type="text/javascript" src="https://cindyjs.org/dist/v0.8/Cindy.js"></script>
+    <script type="text/javascript">
+var cdy = CindyJS({
+  scripts: "cs*",
+  defaultAppearance: {
+    dimDependent: 0.7,
+    fontFamily: "sans-serif",
+    lineSize: 1,
+    pointSize: 5.0,
+    textsize: 12.0
+  },
+  angleUnit: "°",
+  geometry: [
+    {name: "A", type: "Free", pos: [0.0, -0.0, 4.0], color: [1.0, 0.0, 0.0], pinned: true, size: 3.0},
+    {name: "B", type: "Free", pos: [4.0, -0.0, 2.0], color: [1.0, 0.0, 0.0], size: 0.0},
+    {name: "C", type: "Free", pos: [4.0, 0.0, 1.0], color: [1.0, 0.0, 0.0], pinned: true, size: 3.0},
+    {name: "C0", type: "Compass", color: [0.0, 0.0, 1.0], args: ["A", "B", "A"], dashtype: "dashed", printname: "$C_{0}$"},
+    {name: "D", type: "PointOnCircle", pos: [4.0, 0.7999999999999999, 2.039607805437114], color: [1.0, 0.0, 0.0], args: ["C0"], labeled: true, textsize: 15.0},
+    {name: "E", type: "Free", pos: [4.0, 0.0, 0.8], color: [1.0, 0.0, 0.0], pinned: true, size: 0.0},
+    {name: "C1", type: "Compass", color: [0.0, 0.0, 1.0], args: ["A", "E", "D"], size: 0, printname: "$C_{1}$"},
+    {name: "C2", type: "Compass", color: [0.0, 0.0, 1.0], args: ["E", "A", "C"], size: 0, printname: "$C_{2}$"},
+    {name: "Collection__1", type: "IntersectionCircleCircle", args: ["C1", "C2"]},
+    {name: "F", type: "SelectP", pos: [1.7856716441491756, -4.0, 0.8682709071563907], color: [1.0, 0.0, 0.0], args: ["Collection__1"], size: 0.0},
+    {name: "G", type: "SelectP", pos: [-3.1242312587384196, -4.0, -0.8001457260718967], color: [1.0, 1.0, 1.0], args: ["Collection__1"], size: 3.0},
+    {name: "a", type: "Join", color: [0.0, 0.0, 1.0], args: ["D", "G"], size: 4, overhang: 0.995, clip: "inci"},
+    {name: "C3", type: "Compass", color: [0.0, 0.0, 1.0], args: ["D", "G", "G"], size: 0, printname: "$C_{3}$"},
+    {name: "H", type: "OtherIntersectionCL", color: [1.0, 1.0, 0.0], args: ["C3", "a", "D"], drawtrace: true, tracelength: 120, size: 2.0, border: false},
+    {name: "E0", type: "Locus", color: [1.0, 0.0, 0.0], args: ["D", "C0", "H"]},
+    {name: "Anim0", type: "AnimationAlg", color: [0.0, 0.0, 1.0], args: ["D", "C0"], dock: {offset: [0.0, -0.0]}},
+    {name: "c", type: "Segment", color: [0.0, 0.0, 1.0], args: ["A", "D"], size: 4},
+    {name: "d", type: "Segment", color: [0.0, 0.0, 1.0], args: ["D", "H"], size: 4, overhang: 0.995},
+    {name: "e", type: "Segment", color: [0.0, 0.0, 1.0], args: ["C", "G"], size: 4}
+  ],
+  animation: {
+    autoplay: false,
+    controls: false,
+    speed: 0.5,
+    speedRange: [0.0, 1.0],
+    accuracy: 1
+  },
+  autoplay: false,
+  animcontrols: false,
+  ports: [{
+    width: 556,
+    height: 329,
+    id: "CSCanvas",
+    transform: [{visibleRect: [-9.02, 10.66, 13.22, -2.5]}],
+    axes: true,
+    grid: 1.0,
+    background: "rgb(168,176,192)"
+  }],
+  csconsole: false,
+  use: ["katex"],
+  cinderella: {build: 2083, version: [3, 0, 2083]}
+});
+    </script>
+</head>
+<body>
+    <div id="CSCanvas"></div>
+</body>
+</html>
